@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeliumService } from 'src/app/service/helium.service';
 
 @Component({
   selector: 'app-search',
@@ -7,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
   hotspotName!: string;
+  hotspotData!: any;
 
-  constructor() { }
+  constructor(private helium:HeliumService) { }
 
   ngOnInit(): void {
   }
@@ -17,6 +19,9 @@ export class SearchComponent implements OnInit {
   addHotspot(hotspotName:string) {
     let cleanHotspotName = hotspotName.replace(/\s+/g, '-').toLowerCase(); //this cleans the whitespace and upper chars
     this.hotspotName = cleanHotspotName;
+
+    let hotspotData = this.helium.getHotspotByName(cleanHotspotName);
+
   }
 
 }
