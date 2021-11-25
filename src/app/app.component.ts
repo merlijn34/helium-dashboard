@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HeliumService } from './service/helium.service'
+import { HeliumService } from './service/helium.service';
+
 
 @Component({
   selector: 'app-root',
@@ -11,12 +12,11 @@ export class AppComponent {
 
   goldData:any;
 
-  constructor(private helium:HeliumService){}
+  constructor(private heliumService:HeliumService){}
 
   //to load the data on pageload
   ngOnInit(): void {
-    this.helium.getRewardTotalForAccount().subscribe((data) => {
-      console.log('full data: ', data);
+    this.heliumService.getHotspotByName('tangy-blood-lion').subscribe((data) => {
       this.goldData = data;
     }); 
   }
