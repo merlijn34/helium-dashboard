@@ -20,7 +20,11 @@ export class SearchComponent implements OnInit {
     let cleanHotspotName = hotspotName.replace(/\s+/g, '-').toLowerCase(); //this cleans the whitespace and upper chars
     this.hotspotName = cleanHotspotName;
 
-    let hotspotData = this.helium.getHotspotByName(cleanHotspotName);
+    let data = this.helium.getHotspotByName(cleanHotspotName);
+
+	data.subscribe(data => {
+		this.hotspotData = data;
+	}); 
 
   }
 
