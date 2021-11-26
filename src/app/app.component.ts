@@ -16,9 +16,9 @@ export class AppComponent {
 
   //to load the data on pageload
   ngOnInit(): void {
-    this.heliumService.getHotspotByName('tangy-blood-lion').subscribe((data) => {
-      this.goldData = data;
-    }); 
+	this.heliumService.getAccountAddres('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL').subscribe(data => {
+		this.goldData = data;
+	}); 
   }
 
 }
