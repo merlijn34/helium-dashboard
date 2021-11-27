@@ -1,1 +1,29 @@
 <p>dashboard works!</p>
+
+<div class="table-responsive">
+	<table class="table">
+	  <thead>
+	  <tr>
+		<th>#</th>
+		<th>name</th>
+		<th>addres</th>
+		<th>city</th>
+		<th>country</th>
+		<th>owner</th>
+		<th>transmit scale</th>
+	  </tr>
+	  </thead>
+	  <tbody>
+	  <tr *ngFor="let hotspot of hotspotList(); let i = index">
+		<td>{{i+1}}</td>
+		<td>{{ hotspot.name}}</td>
+		<td>{{ hotspot.address }}</td>
+		<td>{{ hotspot.long_city}}</td>
+		<td>{{ hotspot.long_country}}</td>
+		<td>{{ hotspot.owner}}</td>
+		<td>{{ hotspot.reward_scale}}</td>
+	  </tr>
+	  </tbody>
+	</table>
+  </div>
+

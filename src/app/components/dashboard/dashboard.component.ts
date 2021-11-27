@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Hotspot } from 'src/app/models/hotspot.model';
+import { HotspotService } from 'src/app/service/hotspot.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private hotspotService:HotspotService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  hotspotList(): Hotspot[] {
+	return this.hotspotService.getAllHotspots();
   }
-
 }

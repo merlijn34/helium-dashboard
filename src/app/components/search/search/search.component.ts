@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hotspot } from 'src/app/models/hotspot.model';
 import { HeliumService } from 'src/app/service/helium.service';
+import { HotspotService } from 'src/app/service/hotspot.service';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +13,7 @@ export class SearchComponent implements OnInit {
   hotspotData!: any;
   hotspot!: Hotspot;
 
-  constructor(private helium:HeliumService) { }
+  constructor(private heliumService:HeliumService, private hotspotService:HotspotService) { }
 
   ngOnInit(): void {}
   
@@ -25,16 +26,13 @@ export class SearchComponent implements OnInit {
 	this.hotspotName = cleanHotspotName;
 
 	//call the service and get hotspot data by name
-	let data = this.helium.getHotspotByName(cleanHotspotName);
+	let data = this.heliumService.getHotspotByName(cleanHotspotName);
 	
 	//create hotspot
 	let hotspot = new Hotspot();
 
-	//add hostpot data
-	hotspot.name = cleanHotspotName;
-
 	//get hotspot data and write values to new Hotspot
-	//TODO: write better code for this
+	//TODO: Improve this code
 	data.subscribe(data => {
 		console.log(data);
 		let address = Object.values(data)[0][0]['address'];
@@ -84,14 +82,10 @@ export class SearchComponent implements OnInit {
 		hotspot.payer = payer;
 		hotspot.listen_addrs = listen_addrs;
 		hotspot.timestamp_added = timestamp_added;
-	}); 
 
-
-	
-	console.log(hotspot);
-	
-	
-	
+		//add hotspot to the list of hotspots
+		this.hotspotService.addHotspot(hotspot);
+	});		
 
   }
 
