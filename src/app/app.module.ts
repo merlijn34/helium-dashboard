@@ -7,14 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SearchComponent } from './components/search/search/search.component';
-import { MyHotspotsComponent } from './components/my-hotspots/my-hotspots/my-hotspots.component';
+import { MyHotspotsComponent } from './components/my-hotspots/my-hotspots.component';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     SearchComponent,
-    MyHotspotsComponent
+    MyHotspotsComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
