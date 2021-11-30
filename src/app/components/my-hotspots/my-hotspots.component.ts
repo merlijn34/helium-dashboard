@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Hotspot } from 'src/app/models/hotspot.model';
-import { HotspotService } from 'src/app/service/hotspot.service';
 
 @Component({
   selector: 'app-my-hotspots',
@@ -9,12 +7,9 @@ import { HotspotService } from 'src/app/service/hotspot.service';
 })
 export class MyHotspotsComponent implements OnInit {
 
-  constructor(private hotspotService:HotspotService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  hotspotList(): Hotspot[] {
-	return this.hotspotService.getAllHotspots();
-  }
 }

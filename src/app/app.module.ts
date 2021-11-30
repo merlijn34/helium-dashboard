@@ -6,9 +6,11 @@ import { ErrorServiceService } from './service/error-service.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SearchComponent } from './components/search/search/search.component';
+import { SearchComponent } from './components/search/search.component';
 import { MyHotspotsComponent } from './components/my-hotspots/my-hotspots.component';
 import { NavComponent } from './components/nav/nav.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MyHotspotsTableComponent } from './components/my-hotspots/my-hotspots-table/my-hotspots-table.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +18,16 @@ import { NavComponent } from './components/nav/nav.component';
     DashboardComponent,
     SearchComponent,
     MyHotspotsComponent,
-    NavComponent
+    NavComponent,
+    MyHotspotsTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
   {

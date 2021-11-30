@@ -1,0 +1,21 @@
+<div class="table-responsive">
+	<table class="table">
+	  <thead>
+	  <tr>
+		<th>#</th>
+		<th>name</th>
+		<th>account</th>
+		<th>address</th>
+	  </tr>
+	  </thead>
+	  <tbody>
+	  <tr *ngFor="let hotspot of hotspotList(); let i = index">
+		<td>{{i+1}}</td>
+		<td>{{ hotspot.name}}</td>
+		<td>{{ hotspot.owner }}</td>
+		<td>{{ hotspot.long_country}} - {{ hotspot.long_city}}</td>
+	  </tr>
+	  </tbody>
+	</table>
+  </div>
+
