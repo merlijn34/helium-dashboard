@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MyHotspotsComponent } from './components/my-hotspots/my-hotspots.component';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'my-hotspots', component: MyHotspotsComponent},
+  { path: 'search', component: SearchComponent},
   { path: 'hotspot',
     component: MyHotspotsComponent,
     children: [
