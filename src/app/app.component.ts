@@ -19,6 +19,7 @@ export class AppComponent {
 	// this.heliumService.getHotspotByName('tangy-blood-lion').subscribe(data => {
 	// 	this.goldData = data;
 	// }); 
+
   }
 
 }

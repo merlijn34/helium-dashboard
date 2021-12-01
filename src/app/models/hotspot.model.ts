@@ -26,6 +26,8 @@ export class Hotspot {
 	payer!: string;
 	listen_addrs!: string;
 	timestamp_added!: string;
+	height!: number;
+	sync!: boolean;
 
 //   constructor(address: string, long_city: string, long_country: string, name: string, owner: string, score: number, online: string, rewards: number){
 // 	  this.address = address;

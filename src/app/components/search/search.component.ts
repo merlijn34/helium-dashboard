@@ -82,6 +82,9 @@ export class SearchComponent implements OnInit {
 		hotspot.payer = payer;
 		hotspot.listen_addrs = listen_addrs;
 		hotspot.timestamp_added = timestamp_added;
+		hotspot.block = block;
+		hotspot.sync = this.hotspotService.getSyncStatus(hotspot);
+
 
 		//add hotspot to the list of hotspots
 		this.hotspotService.addHotspot(hotspot);

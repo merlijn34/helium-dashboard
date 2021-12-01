@@ -17,4 +17,6 @@ export class DashboardComponent implements OnInit {
   hotspotList(): Hotspot[] {
 	return this.hotspotService.getAllHotspots();
   }
+
+  
 }

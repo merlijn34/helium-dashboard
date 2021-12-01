@@ -1,2 +1,49 @@
-<p>dashboard works!</p>
-
+<div class="container-fluid">
+	<div class="wrapper d-flex flex-row">
+		<div class="card col-6">
+			<div class="card-body">
+				<h5 class="card-title">Hotspot data</h5>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">name</th>
+							<th scope="col">online</th>
+							<th scope="col">synced</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let hotspot of hotspotList(); let i = index">
+							<td>{{ i+1 }}</td>
+							<td>{{ hotspot.name }}</td>
+							<td>{{ hotspot.online }}</td>
+							<td>{{ hotspot.sync }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="card col-6">
+			<h5 class="card-title">Rewards</h5>
+			<div class="card-body d-flex flex-row">
+				<div class="dashboard-rewards">
+					<p>24h</p>
+					<h2>3.0</h2>
+					<p>7d</p>
+					<h2>3.0</h2>
+				</div>
+				<div class="dashboard-rewards">
+					<p>30d</p>
+					<h2>3.0</h2>
+					<p>total</p>
+					<h2>3.0</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<app-dashboard-chart></app-dashboard-chart>
+		</div>
+	</div>
+</div>
