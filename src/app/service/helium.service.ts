@@ -101,14 +101,35 @@ export class HeliumService {
 
 	/**
 	 * get reward total per hotspot
-	 * example: 'tangy-blood-lion'
-	 * here we can also add params for min and max time
-	 * @param name 
+	 * The block that includes the "max_time" timestamp is excluded from the result.
+	 * @param address hotspot address
 	 * @returns 
 	 */
-	getTotalRewardsByHotspot(name: string): Observable<Hotspot> {
-		let params = 'hotspots/' + 'name' + name;
+	getTotalRewardsByHotspot(address: string): Observable<Hotspot> {
+		let params = 'hotspots/' + address + '/rewards/sum';
 		return this.http.get<Hotspot>(this.url + params);
+	}
+	
+	
+	/**
+	 * get rewards per hotspot
+	 * here we can also add params for min and max time
+	 * The block that includes the "max_time" timestamp is excluded from the result.
+	 * For example to get the last 7 days of rewards bucketed by day use the following path/parameters: 
+	 * ?min_time=-7%20day&bucket=day
+	 * @param address 
+	 * @returns 
+	 * 
+	 * TODO: get the cursor
+	 */
+	getRewardsByHotspot(address: string, timestamp: string){
+		let params = 'hotspots/' + address + '/rewards' + timestamp;
+		//return this.http.get(this.url + params);
+		return this.http.get(
+			this.url + params, { observe: 'response' }
+		);
+
+
 	}
 
 	////////////////////////////////////////////////////////////////
@@ -117,17 +138,12 @@ export class HeliumService {
 
 
 	/**
-	 * get reward total per hotspot
-	 * example: 'tangy-blood-lion'
-	 * here we can also add params for min and max time
-	 * @param name 
+	 * get blockchain height
 	 * @returns 
 	 */
 	getBlockchainHeight() {
 		let params = 'blocks/height';
 		return this.http.get(this.url + params);
-
-
 	}
 
 }
