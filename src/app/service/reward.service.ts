@@ -9,21 +9,34 @@ export class RewardService {
 
   constructor(private heliumService:HeliumService) { }
 
+//	TO get the cursor:::	let nextData = Object.values(data)[6]['cursor']; //todo find a better way to do this
 
-  //getRewardsForWeekByDay(hotspot: Hotspot) {
   getRewardsForWeekByDay(hotspotAddress: string) {
-	// let hotspotAddress = hotspot.address;
-	let timestamp = '?min_time=-7%20day&bucket=day';
-
+	let timestamp = 'max_time=2021-12-09&min_time=2021-12-08&bucket=hour';
 	//get the data from the heliumService
-	let data = this.heliumService.getRewardsByHotspot(hotspotAddress, timestamp);
-
-	console.log(data);
+	let data = this.heliumService.getTotalRewardsByHotspot(hotspotAddress, timestamp);
+	// console.log('data ', data);
 	return data;
-
   }
 
 
 
+  /**
+   * this gets the total rewards per hotspot per given timeframe
+   * @param hotspotAddress 
+   * @param timeFrame this is ISO 8601 (e.g. 2020-08-27T00:00:00Z) or in relative time (e.g. -1 week, which when url esacped becomes -1%20week)
+   * @param bucket this can be: hour, day, week
+   */
+	getRewardsCustom(hotspotAddress: string, maxTime: string, minTime: string, bucket: string) {
+		// let hotspotAddress = hotspot.address;
+
+		let timeFrame = 'max_time=' + maxTime + '&min_time=' + minTime;
+		console.log(timeFrame);
+		let timestamp = timeFrame + '&bucket=' + bucket;
+	
+		let data = this.heliumService.getTotalRewardsByHotspot(hotspotAddress, timestamp);
+
+		return data;
+	}
 
 }

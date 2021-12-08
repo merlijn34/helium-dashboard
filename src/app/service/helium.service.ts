@@ -100,16 +100,22 @@ export class HeliumService {
 
 
 	/**
-	 * get reward total per hotspot
+	 * get reward total per hotspot in given timeframe
 	 * The block that includes the "max_time" timestamp is excluded from the result.
 	 * @param address hotspot address
+	 * @param timestamp this is ISO 8601 (e.g. 2020-08-27T00:00:00Z)
 	 * @returns 
 	 */
-	getTotalRewardsByHotspot(address: string): Observable<Hotspot> {
-		let params = 'hotspots/' + address + '/rewards/sum';
+	getTotalRewardsByHotspot(address: string, timestamp: string): Observable<Hotspot> {
+		let params = 'hotspots/' + address + '/rewards/sum?' + timestamp;
+		//return this.http.get(this.url + params);
+		console.log(this.url + params);
 		return this.http.get<Hotspot>(this.url + params);
 	}
 	
+
+
+
 	
 	/**
 	 * get rewards per hotspot
@@ -123,13 +129,11 @@ export class HeliumService {
 	 * TODO: get the cursor
 	 */
 	getRewardsByHotspot(address: string, timestamp: string){
-		let params = 'hotspots/' + address + '/rewards' + timestamp;
+		let params = 'hotspots/' + address + '/rewards?max_time=2021-12-09&min_time=2021-12-08' ;
 		//return this.http.get(this.url + params);
 		return this.http.get(
 			this.url + params, { observe: 'response' }
 		);
-
-
 	}
 
 	////////////////////////////////////////////////////////////////
