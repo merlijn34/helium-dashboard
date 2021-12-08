@@ -61,24 +61,21 @@ export class HeliumService {
 
 
 	/**
-	* TODO get the cursor and then map data 
+	*
 	* Returns the total rewards for a given account in a given timeframe. 
 	* @param accountAdres - this is the account address
 	* Timestamps can be given in ISO 8601 format (e.g. 2020-08-27T00:00:00Z)
 	* or in relative time (e.g. -1 week, which when url esacped becomes -1%20week). When ommitted the current time is assumed.
 	* @returns 
 	*/
-	getRewardTotalForAccount(accountAdres: string): Observable<Account> {
-		let sum = '?min_time=-7%20day&bucket=day';
-		let params = 'accounts/' + accountAdres + '/rewards/' + sum;
-		let response = this.http.get<Account>(this.url + params);
+	getRewardTotalForAccount(accountAdres: string, timestamp: string): Observable<Account> {
+		let params = 'accounts/' + accountAdres + '/rewards/sum?' + timestamp;
+		console.log(this.url + params);
+		return this.http.get<Account>(this.url + params);
 
-		//TODO use the cursor to get the real data
-
-		// let data = this.http.get(this.url + '/blocks?cursor=' + c);
-
-		return response;  //todo return data
 	}
+
+
 
 
 	////////////////////////////////////////////////////////////////
@@ -109,7 +106,7 @@ export class HeliumService {
 	getTotalRewardsByHotspot(address: string, timestamp: string): Observable<Hotspot> {
 		let params = 'hotspots/' + address + '/rewards/sum?' + timestamp;
 		//return this.http.get(this.url + params);
-		console.log(this.url + params);
+		// console.log(this.url + params);
 		return this.http.get<Hotspot>(this.url + params);
 	}
 	
