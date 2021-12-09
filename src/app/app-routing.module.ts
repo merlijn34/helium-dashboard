@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MyHotspotsComponent } from './components/my-hotspots/my-hotspots.component';
 import { SearchComponent } from './components/search/search.component';
+import { MyHotspotComponent } from './components/my-hotspot/my-hotspot.component'
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: 'hotspot',
     component: MyHotspotsComponent,
     children: [
-      {path: ':name', component: MyHotspotsComponent} //change for childeren of hotspot
+      {path: ':name', component: MyHotspotComponent} //change for childeren of hotspot
     ]
   }
 ];

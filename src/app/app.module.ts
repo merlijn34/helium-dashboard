@@ -12,6 +12,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MyHotspotsTableComponent } from './components/my-hotspots/my-hotspots-table/my-hotspots-table.component';
 import { DashboardChartComponent } from './components/dashboard/dashboard-chart/dashboard-chart.component';
+import { MyHotspotComponent } from './components/my-hotspot/my-hotspot.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DashboardChartComponent } from './components/dashboard/dashboard-chart/
     MyHotspotsComponent,
     NavComponent,
     MyHotspotsTableComponent,
-    DashboardChartComponent
+    DashboardChartComponent,
+    MyHotspotComponent
   ],
   imports: [
     BrowserModule,
