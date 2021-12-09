@@ -10,9 +10,32 @@ export class HotspotService {
 
 	constructor(private heliumService: HeliumService) { }
 
+	/**
+	 * TODO handle ux response when bad hotspot name
+	 * @param hotspot the hotspot given
+	 */
 	addHotspot(hotspot: Hotspot) {
-		this.hotspots.push(hotspot);
+		if (!this.listContainsHotspot(hotspot, this.hotspots)){
+			this.hotspots.push(hotspot);
+		}
 	}
+
+	/**
+	 * check if the hotspot is in the list of hotspots
+	 * @param obj the hotspot given
+	 * @param list the list of hotspots
+	 * @returns boolean
+	 */
+	listContainsHotspot(obj:Hotspot, list:any) {
+		var i;
+		for (i = 0; i < list.length; i++) {
+			if (list[i].name === obj.name) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 	getAllHotspots() {
 		return this.hotspots;
