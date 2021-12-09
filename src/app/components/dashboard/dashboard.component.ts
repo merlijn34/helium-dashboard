@@ -10,16 +10,43 @@ import { RewardService } from 'src/app/service/reward.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  weekTotal:number = 0;
+
+  dayTotal!:number;
+  weekTotal!:number;
+  monthTotal!:number;
+  total!:number;
+
 
   constructor(private hotspotService:HotspotService, private rewardsService:RewardService) { }
 
   ngOnInit(): void {
 
+    this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '-1%20day','').subscribe(data => {
+      console.log('24Hour',data);
+
+      this.dayTotal = Math.round(Object.values(data)[1]['total']);
+      // this.account = data
+    })
+
     this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '-7%20day','').subscribe(data => {
       console.log('account',data);
 
       this.weekTotal = Math.round(Object.values(data)[1]['total']);
+      // this.account = data
+    })
+
+    this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '-30%20day','').subscribe(data => {
+      console.log('account',data);
+
+      this.monthTotal = Math.round(Object.values(data)[1]['total']);
+      // this.account = data
+    })
+
+    this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '','').subscribe(data => {
+      console.log('account',data);
+
+      this.total = Math.round(Object.values(data)[1]['total']);
+      // this.account = data
     })
 
   }

@@ -24,19 +24,27 @@
 			</div>
 		</div>
 		<div class="card col-6">
-			<h5 class="card-title">Rewards</h5>
-			<div class="card-body d-flex flex-row">
-				<div class="dashboard-rewards">
-					<p>24h</p>
-					<h2>3.0</h2>
-					<p>7d</p>
-					<h2>{{weekTotal}}</h2>
+			<h5 class="card-title">Rewards total by account</h5>
+			<div class="card-body">
+				<div class="top-body d-flex">
+					<div class="item">
+						<span>24h</span>
+						<h2>{{dayTotal}}</h2>
+					</div>
+					<div class="item">
+						<span>7d</span>
+						<h2>{{weekTotal}}</h2>
+					</div>
 				</div>
-				<div class="dashboard-rewards">
-					<p>30d</p>
-					<h2>3.0</h2>
-					<p>total</p>
-					<h2>3.0</h2>
+				<div class="bottom-body d-flex">
+					<div class="item">
+						<span>30d</span>
+						<h2>{{monthTotal}}</h2>
+					</div>
+					<div class="item">
+						<span>total</span>
+						<h2>{{total}}</h2>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -1,3 +1,7 @@
 .dashboard-rewards{
 	margin: 20px;
 }
+.item{
+	width: 50%;
+	text-align: center;
+}
