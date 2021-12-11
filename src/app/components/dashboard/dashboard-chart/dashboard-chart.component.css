@@ -4,3 +4,8 @@
 	height: 400px;
 
 }
+
+.button-wrapper {
+    justify-content: center;
+    display: flex;
+}
