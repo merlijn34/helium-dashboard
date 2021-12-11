@@ -10,7 +10,8 @@ export class Hotspot {
 	owner!: string; //wallet address
 	reward_scale!: number; //transmit score
 	online!: string; //hotspot status
-	block!: number;
+	blockchainHeight!: number;
+	hotspotHeight!: number;
 	block_added!: number;
 	elevation!: number;
 	gain!: number;
@@ -31,5 +32,6 @@ export class Hotspot {
 	rewardsWeek!: number;
 	rewardsMonth!: number;
 	rewardsTotal!: number;
+	gap!: number;
 }
 

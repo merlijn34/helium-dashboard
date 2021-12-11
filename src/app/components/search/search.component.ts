@@ -43,7 +43,8 @@ export class SearchComponent implements OnInit {
 		hotspot.owner = Object.values(data)[0][0]['owner'];
 		hotspot.reward_scale = Object.values(data)[0][0]['reward_scale'];
 		hotspot.online = Object.values(data)[0][0]['status']['online'];
-		hotspot.block = Object.values(data)[0][0]['block'];
+		hotspot.hotspotHeight = Object.values(data)[0][0]['status']['height'];
+		hotspot.blockchainHeight = Object.values(data)[0][0]['block'];
 		hotspot.block_added = Object.values(data)[0][0]['block_added'];
 		hotspot.elevation = Object.values(data)[0][0]['block_elevation'];
 		hotspot.gain = Object.values(data)[0][0]['gain'];
@@ -58,9 +59,8 @@ export class SearchComponent implements OnInit {
 		hotspot.payer = Object.values(data)[0][0]['payer'];
 		hotspot.listen_addrs = Object.values(data)[0][0]['status']['listen_addrs'];
 		hotspot.timestamp_added = Object.values(data)[0][0]['timestamp_added'];
-		
-		
 		hotspot.sync = this.hotspotService.getSyncStatus(hotspot);
+		hotspot.gap = hotspot.hotspotHeight - hotspot.blockchainHeight;
 
 		//get rewards per hotspot
 		this.rewardService.getHotspotRewardsCustom(hotspot.address,'', '-1%20day','').subscribe(data => {
