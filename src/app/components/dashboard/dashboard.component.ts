@@ -22,31 +22,24 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
 
     this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '-1%20day','').subscribe(data => {
-      console.log('24Hour',data);
-
-
+      // console.log('24Hour',data);
       this.dayTotal = Math.round((Object.values(data)[1]['total'] + Number.EPSILON) * 100) / 100;
-
       // this.account = data
     })
 
     this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '-7%20day','').subscribe(data => {
-      console.log('account',data);
-
+      // console.log('7 day rewards',data);
       this.weekTotal = Math.round((Object.values(data)[1]['total'] + Number.EPSILON) * 100) / 100;
-      // this.account = data
     })
 
     this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '-30%20day','').subscribe(data => {
-      console.log('account',data);
-
+      // console.log('30 day rewards',data);
       this.monthTotal = Math.round((Object.values(data)[1]['total'] + Number.EPSILON) * 100) / 100;
       // this.account = data
     })
 
     this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '','').subscribe(data => {
-      console.log('account',data);
-
+      // console.log('account total',data);
       this.total = Math.round((Object.values(data)[1]['total'] + Number.EPSILON) * 100) / 100;
       // this.account = data
     })
