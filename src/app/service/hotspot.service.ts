@@ -47,13 +47,9 @@ export class HotspotService {
 	 * @returns status of sync in true or false
 	 */
 	getSyncStatus(hotspot: Hotspot) {
-		let hotspotBlock = hotspot.height;
-		let blockchainBlock;
+		let hotspotBlock = hotspot.hotspotHeight;
+		let blockchainBlock = hotspot.blockchainHeight;
 		
-		this.heliumService.getBlockchainHeight().subscribe(data => {
-			blockchainBlock = Object.values(data)[0]['height'];
-		});
-
 		if (hotspotBlock === blockchainBlock){
 			return true;
 		}else {
