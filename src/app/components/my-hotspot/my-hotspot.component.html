@@ -1,1 +1,12 @@
-<p>my-hotspot works!</p>
+<ng-container *ngIf="selectedHotspot; else noHotspotData">
+	<h1>Single hotspot page view</h1>
+
+
+</ng-container>
+
+<ng-template #noHotspotData>
+	<div class="detail-header">
+	  Select a scooter from the list
+	</div>
+  </ng-template>
+  

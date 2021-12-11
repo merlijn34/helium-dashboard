@@ -8,14 +8,11 @@ import { MyHotspotComponent } from './components/my-hotspot/my-hotspot.component
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
-  { path: 'my-hotspots', component: MyHotspotsComponent},
   { path: 'search', component: SearchComponent},
-  { path: 'hotspot',
-    component: MyHotspotsComponent,
+  { path: 'my-hotspots', component: MyHotspotsComponent,
     children: [
       {path: ':name', component: MyHotspotComponent} //change for childeren of hotspot
-    ]
-  }
+    ]}
 ];
 
 @NgModule({

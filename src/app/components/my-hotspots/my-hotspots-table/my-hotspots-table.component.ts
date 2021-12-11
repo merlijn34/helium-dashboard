@@ -8,6 +8,7 @@ import { HotspotService } from 'src/app/service/hotspot.service';
   styleUrls: ['./my-hotspots-table.component.css']
 })
 export class MyHotspotsTableComponent implements OnInit {
+  selectedHotspot?: Hotspot;
 
   constructor(private hotspotService:HotspotService) { }
 
@@ -17,5 +18,10 @@ export class MyHotspotsTableComponent implements OnInit {
   hotspotList(): Hotspot[] {
     return this.hotspotService.getAllHotspots();
     }
+
+  //set selected scooter
+  onSelect(hotspot: Hotspot): void {
+    this.selectedHotspot === hotspot;
+  }
 
 }

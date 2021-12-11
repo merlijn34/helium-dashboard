@@ -9,7 +9,10 @@
 	  </tr>
 	  </thead>
 	  <tbody>
-	  <tr *ngFor="let hotspot of hotspotList(); let i = index">
+	  <tr	*ngFor="let hotspot of hotspotList(); let i = index"
+			(click)="onSelect(hotspot)"
+			routerLink="{{hotspot.name}}"
+		>
 		<td>{{i+1}}</td>
 		<td>{{ hotspot.name}}</td>
 		<td>{{ hotspot.owner }}</td>
@@ -18,4 +21,4 @@
 	  </tbody>
 	</table>
   </div>
-
+<router-outlet></router-outlet>
