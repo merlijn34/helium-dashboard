@@ -10,7 +10,6 @@ export class Hotspot {
 	owner!: string; //wallet address
 	reward_scale!: number; //transmit score
 	online!: string; //hotspot status
-	rewards!: number; //sum of rewards
 	block!: number;
 	block_added!: number;
 	elevation!: number;
@@ -28,18 +27,9 @@ export class Hotspot {
 	timestamp_added!: string;
 	height!: number;
 	sync!: boolean;
-
-//   constructor(address: string, long_city: string, long_country: string, name: string, owner: string, score: number, online: string, rewards: number){
-// 	  this.address = address;
-// 	  this.long_city = long_city;
-// 	  this.long_country = long_country;
-// 	  this.name = name;
-// 	  this.owner = owner;
-// 	  this.score = score;
-// 	  this.online = online;
-// 	  this.rewards = rewards;
-//   }
-
-
+	rewardsDay!: number;
+	rewardsWeek!: number;
+	rewardsMonth!: number;
+	rewardsTotal!: number;
 }
 
