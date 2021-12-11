@@ -24,28 +24,30 @@ export class DashboardComponent implements OnInit {
     this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '-1%20day','').subscribe(data => {
       console.log('24Hour',data);
 
-      this.dayTotal = Math.round(Object.values(data)[1]['total']);
+
+      this.dayTotal = Math.round((Object.values(data)[1]['total'] + Number.EPSILON) * 100) / 100;
+
       // this.account = data
     })
 
     this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '-7%20day','').subscribe(data => {
       console.log('account',data);
 
-      this.weekTotal = Math.round(Object.values(data)[1]['total']);
+      this.weekTotal = Math.round((Object.values(data)[1]['total'] + Number.EPSILON) * 100) / 100;
       // this.account = data
     })
 
     this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '-30%20day','').subscribe(data => {
       console.log('account',data);
 
-      this.monthTotal = Math.round(Object.values(data)[1]['total']);
+      this.monthTotal = Math.round((Object.values(data)[1]['total'] + Number.EPSILON) * 100) / 100;
       // this.account = data
     })
 
     this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '','').subscribe(data => {
       console.log('account',data);
 
-      this.total = Math.round(Object.values(data)[1]['total']);
+      this.total = Math.round((Object.values(data)[1]['total'] + Number.EPSILON) * 100) / 100;
       // this.account = data
     })
 
