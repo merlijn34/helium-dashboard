@@ -61,12 +61,15 @@ Chart.register(
 })
 export class DashboardChartComponent implements OnInit {
 	myChart!:any;
-	rewardsArray!:number[];
+	dayRewardsArray!:number[];
+	weekRewardsArray!:number[];
+	monthRewardsArray!:number[];
 
 
 	constructor(private rewardsService:RewardService) { }
 
 	ngOnInit(): void {
+
 		this.myChart = new Chart("myChart", {
 			type: 'line',
 			data: {
@@ -93,7 +96,8 @@ export class DashboardChartComponent implements OnInit {
 						beginAtZero: true,
 					},
 					x:{
-						max:24
+						beginAtZero: true,
+
 					}
 				},
 				elements: {
@@ -107,34 +111,49 @@ export class DashboardChartComponent implements OnInit {
 	}
 
 
-	//TODO: do this API call only once and save the value's to reduce API requests and avoid 429 timeout
+	//TODO check height of y axis after switching month/day
 	
 	/**
 	 * TODO take Hotspot as variable 
 	 */
 	 dayChart(){ 
-		this.rewardsService.getHotspotRewardsCustom('111NTvsxm6epvvXVwYENtAyhagti39PCFTTWBJgGCng48keCs8','', '-1%20day','hour').subscribe(data => {
-			console.log('day per day',data);
-			
-			//create a new rewardsArray
-			this.rewardsArray = new Array();
-
+		//check if the data has been fetched if not do so
+		if (this.dayRewardsArray === undefined || this.dayRewardsArray.length == 0) {
+			this.rewardsService.getHotspotRewardsCustom('111NTvsxm6epvvXVwYENtAyhagti39PCFTTWBJgGCng48keCs8','', '-1%20day','hour').subscribe(data => {
+				console.log('day per day',data);
+				//create a new rewardsArray
+				this.dayRewardsArray = new Array();
+				
+				//get all the 24 values and push them to the dataset
+				for (var i = 0; i < 24; i++) {
+					//add all the rewards
+					this.dayRewardsArray.push(Object.values(data)[1][i]['total']);
+					//update chart dataset
+					this.myChart.data.datasets[0].data[i] = this.dayRewardsArray[i];
+				}
+				
+				//set hotspot name
+				this.myChart.data.datasets[0].label = 'hotspotname'; //TODO make this variable
+				//set horizontal axis TODO: find better way to set this size
+				this.myChart.data.labels = ['', '', '', '', '', '', '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '', '', ''];
+				
+				//update all the chart data
+				this.myChart.update();
+			});
+		}
+		else{
 			//get all the 24 values and push them to the dataset
 			for (var i = 0; i < 24; i++) {
-				//add all the rewards
-				this.rewardsArray.push(Object.values(data)[1][i]['total']);
 				//update chart dataset
-				this.myChart.data.datasets[0].data[i] = this.rewardsArray[i];
+				this.myChart.data.datasets[0].data[i] = this.dayRewardsArray[i];
 			}
-			
-			//set hotspot name
-			this.myChart.data.datasets[0].label = 'hotspotname'; //TODO make this variable
-			//set horizontal axis TODO: find better way to set this size
 			this.myChart.data.labels = ['', '', '', '', '', '', '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '', '', ''];
-			
+
 			//update all the chart data
 			this.myChart.update();
-		})
+
+		}
+	
 
 	}
 
@@ -142,28 +161,43 @@ export class DashboardChartComponent implements OnInit {
 	 * TODO take Hotspot as variable 
 	 */
 	weekChart(){ 
-		this.rewardsService.getHotspotRewardsCustom('111NTvsxm6epvvXVwYENtAyhagti39PCFTTWBJgGCng48keCs8','', '-7%20day','day').subscribe(data => {
-			console.log('7 day rewards per day',data);
+		if (this.weekRewardsArray === undefined || this.weekRewardsArray.length == 0) {
 
-			//create a new rewardsArray
-			this.rewardsArray = new Array();
+			this.rewardsService.getHotspotRewardsCustom('111NTvsxm6epvvXVwYENtAyhagti39PCFTTWBJgGCng48keCs8','', '-7%20day','day').subscribe(data => {
+				console.log('7 day rewards per day',data);
 
+				//create a new rewardsArray
+				this.weekRewardsArray = new Array();
+
+				//get all the 24 values and push them to the dataset
+				for (var i = 0; i < 6; i++) {
+					//add all the rewards
+					this.weekRewardsArray.push(Object.values(data)[1][i]['total']);
+					//update chart dataset
+					this.myChart.data.datasets[0].data[i] = this.weekRewardsArray[i];
+				}
+				
+				//set hotspot name
+				this.myChart.data.datasets[0].label = 'hotspotname'; //TODO make this variable
+				//set horizontal axis TODO: find better way to set this size
+				this.myChart.data.labels = ['', '', '', '', '', '', ''];
+				
+			
+				this.myChart.update();
+			})
+		}else{
+			//get all the 24 values and push them to the dataset
 			//get all the 24 values and push them to the dataset
 			for (var i = 0; i < 6; i++) {
-				//add all the rewards
-				this.rewardsArray.push(Object.values(data)[1][i]['total']);
 				//update chart dataset
-				this.myChart.data.datasets[0].data[i] = this.rewardsArray[i];
+				this.myChart.data.datasets[0].data[i] = this.weekRewardsArray[i];
 			}
-			
-			//set hotspot name
-			this.myChart.data.datasets[0].label = 'hotspotname'; //TODO make this variable
-			//set horizontal axis TODO: find better way to set this size
 			this.myChart.data.labels = ['', '', '', '', '', '', ''];
-			
-		
+
+			//update all the chart data
 			this.myChart.update();
-		})
+
+		}
 
 	}
 
@@ -172,27 +206,39 @@ export class DashboardChartComponent implements OnInit {
 	 * TODO take Hotspot as variable 
 	 */
 	 monthChart(){ 
-		this.rewardsService.getHotspotRewardsCustom('111NTvsxm6epvvXVwYENtAyhagti39PCFTTWBJgGCng48keCs8','', '-30%20day','day').subscribe(data => {
-			console.log('30 day rewards per day',data);
+		if (this.monthRewardsArray === undefined || this.monthRewardsArray.length == 0) {
+			this.rewardsService.getHotspotRewardsCustom('111NTvsxm6epvvXVwYENtAyhagti39PCFTTWBJgGCng48keCs8','', '-30%20day','day').subscribe(data => {
+				console.log('30 day rewards per day',data);
 
-			//create a new rewardsArray
-			this.rewardsArray = new Array();
+				//create a new rewardsArray
+				this.monthRewardsArray = new Array();
 
+				//get all the 24 values and push them to the dataset
+				for (var i = 0; i < 29; i++) {
+					//add all the rewards
+					this.monthRewardsArray.push(Object.values(data)[1][i]['total']);
+					//update chart dataset
+					this.myChart.data.datasets[0].data[i] = this.monthRewardsArray[i];
+				}
+				
+				//set hotspot name
+				this.myChart.data.datasets[0].label = 'hotspotname'; //TODO make this variable
+				//set horizontal axis TODO: find better way to set this size
+				this.myChart.data.labels = ['', '', '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '', '', ''];
+				
+				this.myChart.update();
+			})
+		}else{
 			//get all the 24 values and push them to the dataset
-			for (var i = 0; i < 29; i++) {
-				//add all the rewards
-				this.rewardsArray.push(Object.values(data)[1][i]['total']);
+			for (var i = 0; i < 6; i++) {
 				//update chart dataset
-				this.myChart.data.datasets[0].data[i] = this.rewardsArray[i];
+				this.myChart.data.datasets[0].data[i] = this.monthRewardsArray[i];
 			}
-			
-			//set hotspot name
-			this.myChart.data.datasets[0].label = 'hotspotname'; //TODO make this variable
-			//set horizontal axis TODO: find better way to set this size
-			this.myChart.data.labels = ['', '', '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '', '', ''];
-			
+			this.myChart.data.labels = ['', '', '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '', '', '',];
+
+			//update all the chart data
 			this.myChart.update();
-		})
+		}
 
 	}
 
