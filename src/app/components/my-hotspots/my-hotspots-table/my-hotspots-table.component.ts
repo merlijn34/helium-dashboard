@@ -19,9 +19,9 @@ export class MyHotspotsTableComponent implements OnInit {
     return this.hotspotService.getAllHotspots();
     }
 
-  //set selected scooter
+  //set selected hotspot
   onSelect(hotspot: Hotspot): void {
-    this.selectedHotspot === hotspot;
+    this.selectedHotspot = hotspot;
   }
 
 }

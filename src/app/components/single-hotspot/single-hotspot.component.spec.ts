@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MyHotspotComponent } from './my-hotspot.component';
+import { SingleHotspotComponent } from './single-hotspot.component';
 
 describe('MyHotspotComponent', () => {
-  let component: MyHotspotComponent;
-  let fixture: ComponentFixture<MyHotspotComponent>;
+  let component: SingleHotspotComponent;
+  let fixture: ComponentFixture<SingleHotspotComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MyHotspotComponent ]
+      declarations: [ SingleHotspotComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyHotspotComponent);
+    fixture = TestBed.createComponent(SingleHotspotComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

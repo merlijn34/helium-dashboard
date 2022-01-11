@@ -14,6 +14,8 @@ export class AppComponent {
 
   goldData:any;
 
+  dataItem:any;
+
   constructor(private heliumService:HeliumService, private rewardsService:RewardService){}
 
   //to load the data on pageload
@@ -22,13 +24,38 @@ export class AppComponent {
 	// 	this.goldData = data;
 	// }); 
 
-	this.rewardsService.getRewardsForWeekByDay('111NTvsxm6epvvXVwYENtAyhagti39PCFTTWBJgGCng48keCs8').subscribe(data => {
-		console.log(data)
+	// this.rewardsService.getRewardsForWeekByDay('111NTvsxm6epvvXVwYENtAyhagti39PCFTTWBJgGCng48keCs8').subscribe(data => {
+	// 	// console.log(data)
+	// 	// let nextData = Object.values(data)[6]['cursor']; //todo find a better way to do this
+		
+	// 	// this.dataItem = nextData;
 
-		let nextData = data['body'];
-		// let x = nextData Object.values(data)['cursor'];
-		// console.log(x)
-	});
+	// 	// console.log('cursor:', nextData);
+	// });
+
+
+	// this.rewardsService.getHotspotRewardsForWeekByDay('111NTvsxm6epvvXVwYENtAyhagti39PCFTTWBJgGCng48keCs8').subscribe(data => {
+	// 	console.log('hotspot',data);
+
+	// })
+
+	//by hospot
+	this.rewardsService.getHotspotRewardsCustom('111NTvsxm6epvvXVwYENtAyhagti39PCFTTWBJgGCng48keCs8','', '-7%20day','day').subscribe(data => {
+		// console.log('30 day rewards per day',data);
+
+	})
+
+	//rewards per account
+	// this.rewardsService.getAccountRewardsCustom('14drLjW9EfZ2E5zXwURaaZHnXxWcimmLPCjZdLSfzcxz7NXqkiL','', '-7%20day','day').subscribe(data => {
+	// 	console.log('account',data);
+
+	// })
+
+
+	// this.heliumService.getRewardsByHotspotCursor('111NTvsxm6epvvXVwYENtAyhagti39PCFTTWBJgGCng48keCs8', '?min_time=-7%20day&bucket=day', 'eyJiZWZvcmUiOjQzOTIwMX0').subscribe(data => {
+	// 	// let x = data['body'];
+	// 	console.log('Next cursor:', data);
+	// });
 
 
   }

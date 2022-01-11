@@ -1,3 +1,7 @@
 <app-nav></app-nav>
 
 <router-outlet></router-outlet>
+
+<div *ngIf="dataItem">
+	{{dataItem |json }}
+ </div>
